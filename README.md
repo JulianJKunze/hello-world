@@ -9,12 +9,11 @@ This is a repo for getting more familiar with github, as well as for playing aro
 - This is the internet. Do not pretend it is not.
 - The key is to start small
 
-## The tools according to the MDN-tutorial:
+## The tools according to ~~the MDN-tutorial~~ me:
 
-- JSX
+- Plain JS
 - Prettier
 - ESlint
-- PostCSS
 - Parcel
 - Github
 - Netlify
