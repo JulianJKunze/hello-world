@@ -9,6 +9,16 @@ This is a repo for getting more familiar with github, as well as for playing aro
 - This is the internet. Do not pretend it is not.
 - The key is to start small
 
+## The tools according to the MDN-tutorial:
+
+- JSX
+- Prettier
+- ESlint
+- PostCSS
+- Parcel
+- Github
+- Netlify
+
 ## A List of project Ideas
 
 - Kniffel game
@@ -20,7 +30,7 @@ This is a repo for getting more familiar with github, as well as for playing aro
 - Some applet to create pixel art from tea-bag-icons
 - A visualization of different meteorite sizes
 - verrückte labyrinth Card-game
-- Snake klon
+- Snake clone
 - Insert text, which then melts down or falls into a pit letter by letter
 - A fractal generator
 - The game of life
