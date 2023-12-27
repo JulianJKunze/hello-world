@@ -17,11 +17,15 @@ This is a repo for getting more familiar with github, as well as for playing aro
 - Parcel
 - Github
 
-## A List of project Ideas
+## Active Project
 
 - Kniffel game
-- A 2-Body Gravity simulation
+
+## A List of project Ideas
+
 - Tic-Tac-Toe-game
+- Kniffel game
+- A 2-Body Gravity simulation
 - Bumms-Zack game
 - Website with info about myself
 - A bending beam simulator
