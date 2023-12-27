@@ -1,6 +1,6 @@
 # hello-world
 
-This is a repo for getting more familiar with github, as well as for playing around with basic web technologies. This will probably not be all to interesting for a while.
+This is a repo for getting for playing around with basic web technologies. This will probably not be all to interesting for a while.
 
 ## Some foundational words:
 
