@@ -1,0 +1,14 @@
+table {
+  border-collapse: collapse;
+  width: 200px;
+  table-layout: fixed;
+}
+
+table th,
+table td {
+  border: 1px solid black;
+}
+
+td.category {
+  background-color: rgb(185, 239, 185);
+}
