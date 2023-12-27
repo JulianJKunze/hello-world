@@ -1,7 +1,7 @@
 const gameTable = document.getElementById("gameTable");
 const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
 
-const topPoints = Array(6).fill("");
+const topPoints = Array(6).fill("0");
 
 createGameTable();
 
