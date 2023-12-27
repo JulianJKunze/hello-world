@@ -16,7 +16,6 @@ This is a repo for getting more familiar with github, as well as for playing aro
 - ESlint
 - Parcel
 - Github
-- Netlify
 
 ## A List of project Ideas
 
