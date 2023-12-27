@@ -1,9 +1,18 @@
 const gameTable = document.getElementById("gameTable");
 const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
 
-const topPoints = Array(6).fill("0");
+const topCategoriesPoints = Array(topCategories.length).fill("");
+let diceRoll = Array(5).fill("");
+const rollDiceButton = document.getElementById("rollDice");
 
 createGameTable();
+updateGameTable();
+
+rollDiceButton.addEventListener("click", () => {
+  rollDice();
+  updateDiceRoll();
+  console.log(diceRoll);
+});
 
 function createGameTable() {
   for (let i = 0; i < topCategories.length; i++) {
@@ -15,11 +24,27 @@ function createGameTable() {
     tr.appendChild(th);
 
     const td = document.createElement("td");
-    td.innerText = topPoints[i];
     tr.appendChild(td);
 
     gameTable.appendChild(tr);
   }
 }
 
-// function updateGameTable() {}
+function updateGameTable() {
+  for (let i = 0; i < topCategories.length; i++) {
+    gameTable.rows[i].cells[1].innerText = topCategoriesPoints[i];
+  }
+}
+
+function updateDiceRoll() {
+  const diceRollDiv = document.getElementById("diceRoll");
+  diceRollDiv.innerText = diceRoll.join(", ");
+}
+
+function rollDice() {
+  diceRoll = diceRoll.map(() => rollDie());
+}
+
+function rollDie() {
+  return Math.ceil(Math.random() * 6);
+}
