@@ -22,4 +22,4 @@ function createGameTable() {
   }
 }
 
-function updateGameTable() {}
+// function updateGameTable() {}
