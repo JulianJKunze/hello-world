@@ -1,11 +1,20 @@
-const gameTable = document.getElementById("gameTable");
 const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
-
-const topCategoriesPoints = Array(topCategories.length).fill("");
+const gameTable = document.getElementById("gameTable");
 const rollDiceButton = document.getElementById("rollDice");
 const diceContainer = document.getElementById("diceContainer");
 
+// Game Logic
+const topCategoriesPoints = Array(topCategories.length).fill("");
 let diceRoll = Array(5).fill("0");
+
+function rollDice() {
+  diceRoll = diceRoll.map(() => rollDie());
+}
+
+function rollDie() {
+  return Math.ceil(Math.random() * 6);
+}
+// Ui-Related and game logic
 
 createGame();
 updateGameTable();
@@ -14,7 +23,6 @@ updateDiceRoll();
 rollDiceButton.addEventListener("click", () => {
   rollDice();
   updateDiceRoll();
-  console.log(diceRoll);
 });
 
 function createGame() {
@@ -52,12 +60,4 @@ function updateGameTable() {
 function updateDiceRoll() {
   const diceRollDiv = document.getElementById("diceRoll");
   diceRollDiv.innerText = diceRoll.join(", ");
-}
-
-function rollDice() {
-  diceRoll = diceRoll.map(() => rollDie());
-}
-
-function rollDie() {
-  return Math.ceil(Math.random() * 6);
 }
