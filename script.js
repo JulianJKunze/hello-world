@@ -1,63 +1,66 @@
-const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
-const gameTable = document.getElementById("gameTable");
-const rollDiceButton = document.getElementById("rollDice");
-const diceContainer = document.getElementById("diceContainer");
+(function () {
+  // DOM-Elements
+  const gameTable = document.getElementById("gameTable");
+  const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
+  const rollDiceButton = document.getElementById("rollDice");
+  const diceContainer = document.getElementById("diceContainer");
 
-// Game Logic
-const topCategoriesPoints = Array(topCategories.length).fill("");
-let diceRoll = Array(5).fill("0");
+  // Game Data
+  const topCategoriesPoints = Array(topCategories.length).fill("");
+  let diceRoll = Array(5).fill("0");
 
-function rollDice() {
-  diceRoll = diceRoll.map(() => rollDie());
-}
-
-function rollDie() {
-  return Math.ceil(Math.random() * 6);
-}
-// Ui-Related and game logic
-
-createGame();
-updateGameTable();
-updateDiceRoll();
-
-rollDiceButton.addEventListener("click", () => {
-  rollDice();
+  createGame();
+  updateGameTable();
   updateDiceRoll();
-});
 
-function createGame() {
-  // create and fill the Table
-  for (let i = 0; i < topCategories.length; i++) {
-    const categoryRow = document.createElement("tr");
+  rollDiceButton.addEventListener("click", () => {
+    rollDice();
+    updateDiceRoll();
+    console.log(diceRoll);
+  });
 
-    const categoryHeader = document.createElement("th");
-    categoryHeader.setAttribute("class", "category");
-    categoryHeader.innerText = topCategories[i];
-    categoryRow.appendChild(categoryHeader);
+  function createGame() {
+    // create and fill the Table
+    for (let i = 0; i < topCategories.length; i++) {
+      const categoryRow = document.createElement("tr");
 
-    const scoreCell = document.createElement("td");
-    categoryRow.appendChild(scoreCell);
+      const categoryHeader = document.createElement("th");
+      categoryHeader.setAttribute("class", "category");
+      categoryHeader.innerText = topCategories[i];
+      categoryRow.appendChild(categoryHeader);
 
-    gameTable.appendChild(categoryRow);
+      const scoreCell = document.createElement("td");
+      categoryRow.appendChild(scoreCell);
+
+      gameTable.appendChild(categoryRow);
+    }
+
+    // create the dices
+
+    for (let i = 0; i < 5; i++) {
+      const diceImage = document.createElement("img");
+      diceImage.src = `img/dice-0.svg`;
+      diceImage.classList.add("diceImage");
+      diceContainer.appendChild(diceImage);
+    }
   }
 
-  // create the dices
-
-  for (let i = 0; i < 5; i++) {
-    const diceImage = document.createElement("img");
-    diceImage.src = `img/dice-0.svg`;
-    diceImage.classList.add("diceImage");
-    diceContainer.appendChild(diceImage);
+  function updateGameTable() {
+    for (let i = 0; i < topCategories.length; i++) {
+      gameTable.rows[i].cells[1].innerText = topCategoriesPoints[i];
+    }
   }
-}
 
-function updateGameTable() {
-  for (let i = 0; i < topCategories.length; i++) {
-    gameTable.rows[i].cells[1].innerText = topCategoriesPoints[i];
+  function updateDiceRoll() {
+    const diceRollDiv = document.getElementById("diceRoll");
+    diceRollDiv.innerText = diceRoll.join(", ");
   }
-}
 
-function updateDiceRoll() {
-  const diceRollDiv = document.getElementById("diceRoll");
-  diceRollDiv.innerText = diceRoll.join(", ");
-}
+  function rollDice() {
+    diceRoll = diceRoll.map(() => rollDie());
+  }
+
+  function rollDie() {
+    return Math.ceil(Math.random() * 6);
+  }
+})();
