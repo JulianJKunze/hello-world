@@ -1,15 +1,16 @@
 (function () {
   // DOM-Elements
-  const gameTable = document.getElementById("gameTable");
+
   const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
   const rollDiceButton = document.getElementById("rollDice");
-  const diceContainer = document.getElementById("diceContainer");
+  const gameTable = createTable();
+  const diceContainer = createDice();
 
   // Game Data
-  const topCategoriesPoints = Array(topCategories.length).fill("");
+  const topCategoriesPoints = Array(topCategories.length).fill("0");
   let diceRoll = Array(5).fill("0");
+  let keepDie = Array(5).fill(false);
 
-  createGame();
   updateGameTable();
   updateDiceRoll();
 
@@ -19,11 +20,11 @@
     console.log(diceRoll);
   });
 
-  function createGame() {
-    // create and fill the Table
+  function createTable() {
+    const gameTable = document.getElementById("gameTable");
+
     for (let i = 0; i < topCategories.length; i++) {
       const categoryRow = document.createElement("tr");
-
       const categoryHeader = document.createElement("th");
       categoryHeader.setAttribute("class", "category");
       categoryHeader.innerText = topCategories[i];
@@ -35,14 +36,19 @@
       gameTable.appendChild(categoryRow);
     }
 
-    // create the dices
+    return gameTable;
+  }
 
+  function createDice() {
+    // create the dices
+    const diceContainer = document.getElementById("diceContainer");
     for (let i = 0; i < 5; i++) {
       const diceImage = document.createElement("img");
       diceImage.src = `img/dice-0.svg`;
       diceImage.classList.add("diceImage");
       diceContainer.appendChild(diceImage);
     }
+    return diceContainer;
   }
 
   function updateGameTable() {
@@ -52,8 +58,9 @@
   }
 
   function updateDiceRoll() {
-    const diceRollDiv = document.getElementById("diceRoll");
-    diceRollDiv.innerText = diceRoll.join(", ");
+    for (let i = 0; i < 5; i++) {
+      diceContainer.children[i].src = `img/dice-${diceRoll[i]}.svg`;
+    }
   }
 
   function rollDice() {
