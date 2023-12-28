@@ -4,17 +4,6 @@
   box-sizing: border-box;
 }
 
-table {
-  border-collapse: collapse;
-  width: 200px;
-  table-layout: fixed;
-}
-
-table th,
-table td {
-  border: 1px solid black;
-}
-
 .appletContainer {
   display: flex;
   flex-direction: column;
@@ -31,6 +20,25 @@ table td {
   padding: 10px;
 }
 
+table {
+  border-collapse: collapse;
+  width: 200px;
+  table-layout: fixed;
+}
+
+table th,
+table td {
+  border: 1px solid black;
+}
+
 th.category {
   background-color: rgb(185, 239, 185);
+}
+
+#diceContainer {
+  display: flex;
+}
+
+.diceImage {
+  max-width: 40px;
 }

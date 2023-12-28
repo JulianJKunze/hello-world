@@ -3,11 +3,13 @@ const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
 
 const topCategoriesPoints = Array(topCategories.length).fill("");
 const rollDiceButton = document.getElementById("rollDice");
+const diceContainer = document.getElementById("diceContainer");
 
-let diceRoll = Array(5).fill("");
+let diceRoll = Array(5).fill("0");
 
-createGameTable();
+createGame();
 updateGameTable();
+updateDiceRoll();
 
 rollDiceButton.addEventListener("click", () => {
   rollDice();
@@ -15,7 +17,8 @@ rollDiceButton.addEventListener("click", () => {
   console.log(diceRoll);
 });
 
-function createGameTable() {
+function createGame() {
+  // create and fill the Table
   for (let i = 0; i < topCategories.length; i++) {
     const tr = document.createElement("tr");
 
@@ -28,6 +31,15 @@ function createGameTable() {
     tr.appendChild(td);
 
     gameTable.appendChild(tr);
+  }
+
+  // create the dices
+
+  for (let i = 0; i < 5; i++) {
+    const diceImage = document.createElement("img");
+    diceImage.src = `img/dice-0.svg`;
+    diceImage.classList.add("diceImage");
+    diceContainer.appendChild(diceImage);
   }
 }
 
