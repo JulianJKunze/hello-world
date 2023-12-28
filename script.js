@@ -20,17 +20,17 @@ rollDiceButton.addEventListener("click", () => {
 function createGame() {
   // create and fill the Table
   for (let i = 0; i < topCategories.length; i++) {
-    const tr = document.createElement("tr");
+    const categoryRow = document.createElement("tr");
 
-    const th = document.createElement("th");
-    th.setAttribute("class", "category");
-    th.innerText = topCategories[i];
-    tr.appendChild(th);
+    const categoryHeader = document.createElement("th");
+    categoryHeader.setAttribute("class", "category");
+    categoryHeader.innerText = topCategories[i];
+    categoryRow.appendChild(categoryHeader);
 
-    const td = document.createElement("td");
-    tr.appendChild(td);
+    const scoreCell = document.createElement("td");
+    categoryRow.appendChild(scoreCell);
 
-    gameTable.appendChild(tr);
+    gameTable.appendChild(categoryRow);
   }
 
   // create the dices
