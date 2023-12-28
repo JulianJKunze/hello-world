@@ -2,8 +2,9 @@ const gameTable = document.getElementById("gameTable");
 const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
 
 const topCategoriesPoints = Array(topCategories.length).fill("");
-let diceRoll = Array(5).fill("");
 const rollDiceButton = document.getElementById("rollDice");
+
+let diceRoll = Array(5).fill("");
 
 createGameTable();
 updateGameTable();

@@ -1,3 +1,9 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 table {
   border-collapse: collapse;
   width: 200px;
@@ -9,6 +15,22 @@ table td {
   border: 1px solid black;
 }
 
-td.category {
+.appletContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#kniffelGame {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+  max-width: 300px;
+  gap: 10px;
+  padding: 10px;
+}
+
+th.category {
   background-color: rgb(185, 239, 185);
 }
