@@ -45,10 +45,17 @@
     for (let i = 0; i < 5; i++) {
       const diceImage = document.createElement("img");
       diceImage.src = `img/dice-0.svg`;
+
       diceImage.classList.add("diceImage");
+      diceImage.addEventListener("click", toggleDiceState);
+
       diceContainer.appendChild(diceImage);
     }
     return diceContainer;
+  }
+
+  function toggleDiceState(e) {
+    const diceIndex = Array.from(diceContainer.children).indexOf(e.target);
   }
 
   function updateGameTable() {
