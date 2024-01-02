@@ -1,8 +1,9 @@
 $(function () {
-  // DOM-Elements
-
+  // General
   const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
-  const rollDiceButton = document.getElementById("rollDice");
+
+  // jQuery / Cash elements
+  const rollDiceButton = $("#rollDice");
   const gameTable = createTable();
   const diceContainer = createDice();
 
@@ -17,7 +18,6 @@ $(function () {
   rollDiceButton.addEventListener("click", () => {
     rollDice();
     updateDiceRoll();
-    console.log(diceRoll);
   });
 
   function createTable() {
@@ -30,11 +30,9 @@ $(function () {
         .text(topCategories[i]);
       categoryRow.append(categoryHeader);
 
-      const scoreCell = $("<td>");
-      categoryRow.append(scoreCell);
+      categoryRow.append($("<td>"));
 
       gameTable.append(categoryRow);
-      console.log(categoryRow, categoryHeader, scoreCell);
     }
 
     return gameTable;
@@ -44,12 +42,10 @@ $(function () {
     // create the dices
     const diceContainer = $("#diceContainer");
     for (let i = 0; i < 5; i++) {
-
       const diceImage = $("<img>")
         .attr("src", "img/dice-0.svg")
         .addClass("diceImage");
       diceContainer.append(diceImage);
-
     }
     return diceContainer;
   }
@@ -60,14 +56,15 @@ $(function () {
 
   function updateGameTable() {
     for (let i = 0; i < topCategories.length; i++) {
-      gameTable.find("tr:eq(" + i + ") td:eq(1)").text(topCategoriesPoints[i]);
+      gameTable.find("tr").eq(i).find("td").eq(0).text(topCategoriesPoints[i]);
     }
   }
 
   function updateDiceRoll() {
     for (let i = 0; i < 5; i++) {
       diceContainer
-        .find(".diceImage:eq(" + i + ")")
+        .find("img")
+        .eq("i")
         .attr("src", "img/dice-" + diceRoll[i] + ".svg");
     }
   }
