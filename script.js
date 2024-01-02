@@ -44,12 +44,18 @@ $(function () {
     // create the dices
     const diceContainer = $("#diceContainer");
     for (let i = 0; i < 5; i++) {
+
       const diceImage = $("<img>")
         .attr("src", "img/dice-0.svg")
         .addClass("diceImage");
       diceContainer.append(diceImage);
+
     }
     return diceContainer;
+  }
+
+  function toggleDiceState(e) {
+    const diceIndex = Array.from(diceContainer.children).indexOf(e.target);
   }
 
   function updateGameTable() {
