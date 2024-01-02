@@ -2,7 +2,15 @@
   "devDependencies": {
     "eslint": "^8.56.0"
   },
-  "dependencies": {
-    "cash-dom": "^8.1.5"
-  }
+
+  "name": "hello-world",
+  "description": "This is a repo for getting for playing around with basic web technologies. This will probably not be all to interesting for a while.",
+  "version": "1.0.0",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+
 }
