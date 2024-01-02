@@ -1,4 +1,4 @@
-(function () {
+$(function () {
   // DOM-Elements
 
   const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
@@ -21,19 +21,20 @@
   });
 
   function createTable() {
-    const gameTable = document.getElementById("gameTable");
+    const gameTable = $("#gameTable");
 
     for (let i = 0; i < topCategories.length; i++) {
-      const categoryRow = document.createElement("tr");
-      const categoryHeader = document.createElement("th");
-      categoryHeader.setAttribute("class", "category");
-      categoryHeader.innerText = topCategories[i];
-      categoryRow.appendChild(categoryHeader);
+      const categoryRow = $("<tr>");
+      const categoryHeader = $("<th>")
+        .addClass("category")
+        .text(topCategories[i]);
+      categoryRow.append(categoryHeader);
 
-      const scoreCell = document.createElement("td");
-      categoryRow.appendChild(scoreCell);
+      const scoreCell = $("<td>");
+      categoryRow.append(scoreCell);
 
-      gameTable.appendChild(categoryRow);
+      gameTable.append(categoryRow);
+      console.log(categoryRow, categoryHeader, scoreCell);
     }
 
     return gameTable;
@@ -41,25 +42,27 @@
 
   function createDice() {
     // create the dices
-    const diceContainer = document.getElementById("diceContainer");
+    const diceContainer = $("#diceContainer");
     for (let i = 0; i < 5; i++) {
-      const diceImage = document.createElement("img");
-      diceImage.src = `img/dice-0.svg`;
-      diceImage.classList.add("diceImage");
-      diceContainer.appendChild(diceImage);
+      const diceImage = $("<img>")
+        .attr("src", "img/dice-0.svg")
+        .addClass("diceImage");
+      diceContainer.append(diceImage);
     }
     return diceContainer;
   }
 
   function updateGameTable() {
     for (let i = 0; i < topCategories.length; i++) {
-      gameTable.rows[i].cells[1].innerText = topCategoriesPoints[i];
+      gameTable.find("tr:eq(" + i + ") td:eq(1)").text(topCategoriesPoints[i]);
     }
   }
 
   function updateDiceRoll() {
     for (let i = 0; i < 5; i++) {
-      diceContainer.children[i].src = `img/dice-${diceRoll[i]}.svg`;
+      diceContainer
+        .find(".diceImage:eq(" + i + ")")
+        .attr("src", "img/dice-" + diceRoll[i] + ".svg");
     }
   }
 
@@ -70,4 +73,4 @@
   function rollDie() {
     return Math.ceil(Math.random() * 6);
   }
-})();
+});
