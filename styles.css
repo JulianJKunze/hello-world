@@ -39,10 +39,19 @@ th.category {
   background-color: rgb(185, 239, 185);
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 #diceContainer {
   display: flex;
 }
 
-.diceImage {
+.dieContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.dieImage {
   max-width: 40px;
 }

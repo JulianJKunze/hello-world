@@ -2,23 +2,19 @@ $(function () {
   // General
   const topCategories = ["Aces", "Twos", "Threes", "Fours", "Fives", "Sixes"];
 
-  // jQuery / Cash elements
-  const rollDiceButton = $("#rollDice");
-  const gameTable = createTable();
-  const diceContainer = createDice();
-
-  // Game Data
+  // Game Data initialization
   const topCategoriesPoints = Array(topCategories.length).fill("0");
   let diceRoll = Array(5).fill("0");
-  // let keepDie = Array(5).fill(false);
+  let keepDie = Array(5).fill(false);
 
+  // UI Creation
+
+  const gameTable = createTable();
+  const diceContainer = createDice();
+  $("#rollDice").on("click", processDiceRoll);
+  $(".keepDieCheckbox").on("change", processKeepCheckbox);
+  processKeepCheckbox();
   updateGameTable();
-  updateDiceRoll();
-
-  rollDiceButton.on("click", () => {
-    rollDice();
-    updateDiceRoll();
-  });
 
   function createTable() {
     const gameTable = $("#gameTable");
@@ -39,21 +35,22 @@ $(function () {
   }
 
   function createDice() {
-    // create the dices
     const diceContainer = $("#diceContainer");
     for (let i = 0; i < 5; i++) {
-      const diceImage = $("<img>")
-        .attr("src", "img/dice-0.svg")
-        .addClass("diceImage");
-      diceContainer.append(diceImage);
+      const dieContainer = $("<div>").addClass("dieContainer");
+      const dieImage = $("<img>")
+        .attr("src", "img/die-0.svg")
+        .addClass("dieImage");
+      const keepDieCheckbox = $("<input>")
+        .attr("type", "checkbox")
+        .addClass("keepDieCheckbox clickable");
+      dieContainer.append(keepDieCheckbox, dieImage);
+      diceContainer.append(dieContainer);
     }
     return diceContainer;
   }
 
-  // function toggleDiceState(e) {
-  //   const diceIndex = Array.from(diceContainer.children).indexOf(e.target);
-  // }
-
+  // UI Output
   function updateGameTable() {
     for (let i = 0; i < topCategories.length; i++) {
       gameTable.find("tr").eq(i).find("td").eq(0).text(topCategoriesPoints[i]);
@@ -65,15 +62,39 @@ $(function () {
       diceContainer
         .find("img")
         .eq(i)
-        .attr("src", "img/dice-" + diceRoll[i] + ".svg");
+        .attr("src", "img/die-" + diceRoll[i] + ".svg");
     }
   }
 
+  // UI Input
+  function processDiceRoll() {
+    rollDice();
+    updateDiceRoll();
+  }
+
+  function processKeepCheckbox() {
+    for (let i = 0; i < 5; i++) {
+      keepDie[i] = $(".dieContainer")
+        .find(".keepDieCheckbox")
+        .eq(i)
+        .prop("checked");
+    }
+  }
+
+  // gameplay
   function rollDice() {
-    diceRoll = diceRoll.map(() => rollDie());
+    for (let i = 0; i < 5; i++) {
+      if (keepDie[i] === false) {
+        diceRoll[i] = rollDie();
+      }
+    }
   }
 
   function rollDie() {
     return Math.ceil(Math.random() * 6);
   }
+
+  // function toggleDiceState(e) {
+  //   const diceIndex = Array.from(diceContainer.children).indexOf(e.target);
+  // }
 });
