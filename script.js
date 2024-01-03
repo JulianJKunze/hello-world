@@ -10,12 +10,12 @@ $(function () {
   // Game Data
   const topCategoriesPoints = Array(topCategories.length).fill("0");
   let diceRoll = Array(5).fill("0");
-  let keepDie = Array(5).fill(false);
+  // let keepDie = Array(5).fill(false);
 
   updateGameTable();
   updateDiceRoll();
 
-  rollDiceButton.addEventListener("click", () => {
+  rollDiceButton.on("click", () => {
     rollDice();
     updateDiceRoll();
   });
@@ -50,9 +50,9 @@ $(function () {
     return diceContainer;
   }
 
-  function toggleDiceState(e) {
-    const diceIndex = Array.from(diceContainer.children).indexOf(e.target);
-  }
+  // function toggleDiceState(e) {
+  //   const diceIndex = Array.from(diceContainer.children).indexOf(e.target);
+  // }
 
   function updateGameTable() {
     for (let i = 0; i < topCategories.length; i++) {
@@ -64,7 +64,7 @@ $(function () {
     for (let i = 0; i < 5; i++) {
       diceContainer
         .find("img")
-        .eq("i")
+        .eq(i)
         .attr("src", "img/dice-" + diceRoll[i] + ".svg");
     }
   }
