@@ -39,6 +39,11 @@ th.category {
   background-color: rgb(185, 239, 185);
 }
 
+#rollDice {
+  width: 100%;
+  flex: 0 0 2rem;
+}
+
 .clickable {
   cursor: pointer;
 }

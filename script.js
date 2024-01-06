@@ -4,17 +4,19 @@ $(function () {
 
   // Game Data initialization
   const topCategoriesPoints = Array(topCategories.length).fill("0");
-  let diceRoll = Array(5).fill("0");
+  const potentialTopCategoriesPoints = Array(topCategories.length).fill("");
+  let diceRoll = Array(5).fill(0);
   let keepDie = Array(5).fill(false);
+  let rollsLeft = 3;
 
-  // UI Creation
-
+  // UI initialisation
   const gameTable = createTable();
   const diceContainer = createDice();
   $("#rollDice").on("click", processDiceRoll);
   $(".keepDieCheckbox").on("change", processKeepCheckbox);
   processKeepCheckbox();
   updateGameTable();
+  updateRollsLeft();
 
   function createTable() {
     const gameTable = $("#gameTable");
@@ -26,7 +28,8 @@ $(function () {
         .text(topCategories[i]);
       categoryRow.append(categoryHeader);
 
-      categoryRow.append($("<td>"));
+      categoryRow.append($("<td>")).addClass("currentPoints");
+      categoryRow.append($("<td>")).addClass("potentialPoints");
 
       gameTable.append(categoryRow);
     }
@@ -54,6 +57,12 @@ $(function () {
   function updateGameTable() {
     for (let i = 0; i < topCategories.length; i++) {
       gameTable.find("tr").eq(i).find("td").eq(0).text(topCategoriesPoints[i]);
+      gameTable
+        .find("tr")
+        .eq(i)
+        .find("td")
+        .eq(1)
+        .text(potentialTopCategoriesPoints[i]);
     }
   }
 
@@ -70,6 +79,13 @@ $(function () {
   function processDiceRoll() {
     rollDice();
     updateDiceRoll();
+    updateRollsLeft();
+    evaluatePotentialPoints();
+    updateGameTable();
+  }
+
+  function updateRollsLeft() {
+    $("#rollsLeft").text(`${rollsLeft} rolls left`);
   }
 
   function processKeepCheckbox() {
@@ -83,10 +99,17 @@ $(function () {
 
   // gameplay
   function rollDice() {
-    for (let i = 0; i < 5; i++) {
-      if (keepDie[i] === false) {
-        diceRoll[i] = rollDie();
+    if (rollsLeft > 0) {
+      for (let i = 0; i < 5; i++) {
+        if (keepDie[i] === false) {
+          diceRoll[i] = rollDie();
+        }
       }
+      rollsLeft = rollsLeft - 1;
+    }
+    if (rollsLeft == 0) {
+      $("#rollDice").prop("disabled", true);
+      $("#rollDice").text("Select Category");
     }
   }
 
@@ -94,7 +117,21 @@ $(function () {
     return Math.ceil(Math.random() * 6);
   }
 
-  // function toggleDiceState(e) {
-  //   const diceIndex = Array.from(diceContainer.children).indexOf(e.target);
-  // }
+  function evaluatePotentialPoints() {
+    for (
+      let topCategoryEyes = 1;
+      topCategoryEyes <= topCategories.length;
+      topCategoryEyes++
+    ) {
+      potentialTopCategoriesPoints[topCategoryEyes - 1] =
+        calculateTopCategoriesPoints(topCategoryEyes);
+    }
+  }
+
+  function calculateTopCategoriesPoints(topCategoryEyes) {
+    const result =
+      diceRoll.filter((dieEyes) => dieEyes === topCategoryEyes).length *
+      topCategoryEyes;
+    return result;
+  }
 });
