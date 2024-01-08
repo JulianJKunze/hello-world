@@ -22,7 +22,7 @@ This is a repo for getting for playing around with basic web technologies. This 
 - Kniffel game
 
 ## A List of project Ideas
-
+- Classic Boid modell
 - Tic-Tac-Toe-game
 - Kniffel game
 - A 2-Body Gravity simulation
